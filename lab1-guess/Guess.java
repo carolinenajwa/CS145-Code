@@ -36,7 +36,7 @@ public class Guess {
         boolean firstGame = true;
 
         // while the user wants a new game, do the following
-        while (newGame == (true)) {
+        do {
 
             totalGames++;
             int gameGuesses = startGame(console, rand);
@@ -71,7 +71,7 @@ public class Guess {
                 }
 
             }
-        }
+        } while (newGame);
 
         System.out.println();
         gameAvgGuesses = (double) totalGuesses / totalGames;
