@@ -104,12 +104,15 @@ public class Guess {
     public static int startGame(Scanner console, Random rand) {
 
         //define the answer and ask the user for a guess
-        int answer = rand.nextInt(GUESS_RANGE);
+        //we need to add 1 to the random number generated 
+        //to get the correct range (0-GUESS_RANGE)
+        int answer = rand.nextInt(GUESS_RANGE) + 1;
         
         while(answer == 0){
             answer = rand.nextInt(GUESS_RANGE);
         }
 
+        //pop a new line ask the user for a guess
         System.out.println();
         System.out.printf("I'm thinking of a number between 1 and %d...\nYour guess? ", GUESS_RANGE);
         int userInput = console.nextInt();
@@ -122,6 +125,7 @@ public class Guess {
 
         }else{ //if the user is not lucky, do this 
 
+            //while they get it wrong
             while(userInput != answer){
 
                 //guide the user toward the correct answer
@@ -143,10 +147,12 @@ public class Guess {
                 System.out.printf("You got it right in %d guesses\n", guesses);
             }
         }
+
+        //return the number guesses for stat processing
         return guesses;
     }
 
-    //print out the results
+    //print out the results using printf
     public static void sessionStat(int totalGames, double totalGuesses, double gameAvgGuesses, int bestGame) {
         System.out.println("Overall results:");
         System.out.printf("\ttotal games   = %d\n", totalGames);
