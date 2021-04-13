@@ -62,22 +62,21 @@ public class Guess {
             if(doContinue.substring(0,1).toUpperCase().equals("N")){
                 newGame = false;
 
-            }else if(doContinue.substring(0,1).toUpperCase().equals("Y")){
-
-
-            }else{
-
+            }else if(!doContinue.substring(0,1).toUpperCase().equals("Y")){
+                
                     //while the input does not equal y/n || Y/N, prompt again
-                while(!doContinue.substring(0,1).toUpperCase().equals("Y") &&  !doContinue.substring(0,1).toUpperCase().equals("N")){
+                    while(!doContinue.substring(0,1).toUpperCase().equals("Y") &&
+                    !doContinue.substring(0,1).toUpperCase().equals("N")){
+    
+                        System.out.println("Please enter a yes or no!\nDo you want to play again? yes/no");
+                        doContinue = console.next();
+                        
+                    }
+    
+                    if(doContinue.substring(0,1).toUpperCase().equals("N")){
+                        newGame = false;
+                    }
 
-                    System.out.println("Please enter a yes or no!\nDo you want to play again? yes/no");
-                    doContinue = console.next();
-                    
-                }
-
-                if(doContinue.substring(0,1).toUpperCase().equals("N")){
-                    newGame = false;
-                }
             }
         }
 
