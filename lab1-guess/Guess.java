@@ -10,6 +10,7 @@
 
 import java.util.*; //import the scanner lib
 
+//main (only) class
 public class Guess {
 
     //range of possible answers
@@ -43,7 +44,7 @@ public class Guess {
 
             totalGames++;
             int gameGuesses = startGame(console, rand);  
-            if(bestGame > gameGuesses || firstGame == true){
+            if(bestGame > gameGuesses || firstGame){
                 bestGame = gameGuesses;
                 firstGame = false;
             }
@@ -89,10 +90,7 @@ public class Guess {
     }
 
 
-    //This program is a guessing game. It is prompts the user for a guess between 1 and a arbitrary
-    //number. The program then guides the user toward a specific number that has been chosen
-    // automatically.  
-
+    //explains the game to the user
     public static void explainGame() {
         System.out.printf("This program allows you to play a guessing game.\n" + 
         "I will think of a number between 1 and\n%d and will allow you to guess until\n" +
@@ -100,6 +98,9 @@ public class Guess {
         "right answer is higher or lower \nthan your guess.\n", GUESS_RANGE);
     }
 
+    //This program is a guessing game. It is prompts the user for a guess between 1 and a arbitrary
+    //number. The program then guides the user toward a specific number that has been chosen
+    // automatically. 
     public static int startGame(Scanner console, Random rand) {
 
         //define the answer and ask the user for a guess
