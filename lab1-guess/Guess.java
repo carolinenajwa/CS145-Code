@@ -11,11 +11,11 @@ import java.util.*; //import the scanner lib
 //main (only) class
 public class Guess {
 
-    // range of possible answers
-    public static final int GUESS_RANGE = 100;
-
     // main
     public static void main(String[] args) {
+
+        // range of possible answers
+        int guessRange = 100;
 
         // define a scanner
         Scanner console = new Scanner(System.in);
@@ -23,11 +23,15 @@ public class Guess {
         // define a random number generator
         Random rand = new Random();
 
+        // initalize values
         double totalGuesses = 0;
         int totalGames = 0;
         double gameAvgGuesses = 0;
         int bestGame = 0;
-        explainGame();
+        String doContinue = null;
+
+        // explain the game to the user
+        explainGame(guessRange);
 
         // play at least one game
         boolean newGame = true;
@@ -39,7 +43,11 @@ public class Guess {
         do {
 
             totalGames++;
-            int gameGuesses = startGame(console, rand);
+
+            // call the game method
+            int gameGuesses = startGame(console, rand, guessRange);
+
+            // did we set a record?
             if (bestGame > gameGuesses || firstGame) {
                 bestGame = gameGuesses;
                 firstGame = false;
@@ -50,27 +58,25 @@ public class Guess {
 
             System.out.print("Do you want to play again? ");
 
-            String doContinue = console.next();
+            // ask the user whether they want to play another game
+            try {
+                doContinue = console.next().substring(0, 1).toUpperCase();
+                if (!doContinue.equals("Y") && !doContinue.equals("N")) {
+                    // we need y/n, send to catch
+                    throw new Exception();
+                }
+            } catch (Exception e) {
+                do {
+                    System.out.println("Please enter a yes or no!\nDo you want to play again? yes/no");
+                    doContinue = console.next().substring(0, 1).toUpperCase();
+                } while (!doContinue.equals("Y") && !doContinue.equals("N"));
+            }
 
             // if the user does not want to keep playing, break the loop
-            if (doContinue.substring(0, 1).toUpperCase().equals("N")) {
+            if (doContinue.equals("N")) {
                 newGame = false;
-
-            } else if (!doContinue.substring(0, 1).toUpperCase().equals("Y")) {
-
-                // while the input does not equal y/n || Y/N, prompt again
-                while (!doContinue.substring(0, 1).toUpperCase().equals("Y")
-                        && !doContinue.substring(0, 1).toUpperCase().equals("N")) {
-
-                    System.out.println("Please enter a yes or no!\nDo you want to play again? yes/no");
-                    doContinue = console.next();
-                }
-
-                if (doContinue.substring(0, 1).toUpperCase().equals("N")) {
-                    newGame = false;
-                }
-
             }
+
         } while (newGame);
 
         System.out.println();
@@ -82,30 +88,26 @@ public class Guess {
     }
 
     // explains the game to the user
-    public static void explainGame() {
+    public static void explainGame(int guessRange) {
         System.out.printf("This program allows you to play a guessing game.\n"
                 + "I will think of a number between 1 and\n%d and will allow you to guess until\n"
                 + "you get it.  For each guess, I will tell you \nwhether the "
-                + "right answer is higher or lower \nthan your guess.\n", GUESS_RANGE);
+                + "right answer is higher or lower \nthan your guess.\n", guessRange);
     }
 
     // This program is a guessing game. It is prompts the user for a guess between 1
     // and a arbitrary number. The program then guides the user toward a specific
     // number that has been chosen automatically.
-    public static int startGame(Scanner console, Random rand) {
+    public static int startGame(Scanner console, Random rand, int guessRange) {
 
         // define the answer and ask the user for a guess
         // we need to add 1 to the random number generated
-        // to get the correct range (0-GUESS_RANGE)
-        int answer = rand.nextInt(GUESS_RANGE) + 1;
+        // to get the correct range (1 -> guessRange)
+        int answer = rand.nextInt(guessRange) + 1;
 
-        while (answer == 0) {
-            answer = rand.nextInt(GUESS_RANGE);
-        }
-
-        // pop a new line ask the user for a guess
+        // pop a new line, ask the user for a guess
         System.out.println();
-        System.out.printf("I'm thinking of a number between 1 and %d...\nYour guess? ", GUESS_RANGE);
+        System.out.printf("I'm thinking of a number between 1 and %d...\nYour guess? ", guessRange);
         int userInput = console.nextInt();
         int guesses = 0;
 
@@ -116,13 +118,10 @@ public class Guess {
 
         } else { // if the user is not lucky, do this
 
-            // while they get it wrong
-            while (userInput != answer) {
-
+            do {
                 // guide the user toward the correct answer
                 if (answer > userInput) {
                     System.out.print("It's higher.\nYour guess? ");
-
                     userInput = console.nextInt();
                     guesses++;
                 } else {
@@ -130,13 +129,10 @@ public class Guess {
                     userInput = console.nextInt();
                     guesses++;
                 }
-            }
+            } while (userInput != answer);
 
-            // correct guess!
-            if (answer == userInput) {
-                guesses++;
-                System.out.printf("You got it right in %d guesses\n", guesses);
-            }
+            guesses++;
+            System.out.printf("You got it right in %d guesses\n", guesses);
         }
 
         // return the number guesses for stat processing
