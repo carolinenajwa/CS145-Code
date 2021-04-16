@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class Giant extends Critter{
     public Action getMove(CritterInfo info) {
-        return Action.INFECT;
+        return Action.HOP;
      }
 
      public Color getColor() {
@@ -11,7 +11,13 @@ public class Giant extends Critter{
      }
 
      public String toString() {
-        return "fee";
+
+        String status = "fee";
+
+
+        
+        return status;
  
     }
+
 }
