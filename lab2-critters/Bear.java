@@ -1,10 +1,8 @@
-import java.lang.reflect.Constructor;
-
 // This defines a simple class of critters that infect whenever they can and
 // otherwise just spin around, looking for critters to infect.  This simple
 // strategy turns out to be surpisingly successful.
 
-
+import java.lang.reflect.Constructor;
 import java.awt.*;
 
  
@@ -19,7 +17,7 @@ public class Bear extends Critter {
     
     // Bear class constructor
     public Bear(boolean polar) {
-         this.count = 0
+         this.count = 0;
          this.polar = polar;
          
     }
@@ -28,10 +26,14 @@ public class Bear extends Critter {
     public Action getMove(CritterInfo info) {
         if (info.getFront() == Neighbor.OTHER) {
             return Action.INFECT;
-      } if (info.getDirection() == Neighbor.EMPTY){
+      } else if (info.getFront() == Neighbor.EMPTY){
             return Action.HOP;
-        }
-     }
+      } else {
+            return Action.LEFT;
+           
+            }
+       }
+  
    
     // Returns Polar Bear/Bear colors
     public Color getColor() {
@@ -44,11 +46,11 @@ public class Bear extends Critter {
 
     // Returns charaters displaying Bear
     public String toString() {
-        this.count = this.count + 1
+        this.count = this.count + 1;
         if (count % 2 == 1) {
             return "/";
         } else {
-            return "\\"
+            return "\\";
      } 
      }      
     }
