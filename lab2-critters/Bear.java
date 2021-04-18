@@ -1,6 +1,7 @@
-// This defines a simple class of critters that infect whenever they can and
-// otherwise just spin around, looking for critters to infect.  This simple
-// strategy turns out to be surpisingly successful.
+// This defines the BEAR Class. BEARS infect if an enemy is in front. 
+// Otherwise hops or turns left. BEARS flips between BLACK and WHITE and 
+// returns a character that alternate on each different move between a 
+// slash character (/) and a backslash character.
 
 import java.lang.reflect.Constructor;
 import java.awt.*;
@@ -33,6 +34,28 @@ public class Bear extends Critter {
            
             }
        }
+  
+   
+    // Returns Polar Bear/Bear colors
+    public Color getColor() {
+        if (this.polar) {
+            return Color.WHITE;
+       } else { 
+            return Color.BLACK;
+            }
+          }
+
+    // Returns charaters displaying Bear
+    public String toString() {
+        this.count = this.count + 1;
+        if (count % 2 == 1) {
+            return "/";
+        } else {
+            return "\\";
+     } 
+     }      
+    }
+
   
    
     // Returns Polar Bear/Bear colors
