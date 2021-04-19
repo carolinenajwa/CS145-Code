@@ -1,23 +1,57 @@
+
 // grab stuff we need
 import java.awt.*;
 
-public class Giant extends Critter{
+public class Giant extends Critter {
+    // Private methods measuring count number of occurrences characters
+    // and color of Bear
+    private int count;
+
+    // Bear class constructor
+    public Giant() {
+        this.count = 0;
+    }
+
+    // action movement for Giant
     public Action getMove(CritterInfo info) {
-        return Action.HOP;
-     }
+        if (info.getFront() == Neighbor.OTHER) {
+            return Action.INFECT;
+        } else if (info.getFront() == Neighbor.EMPTY) {
+            return Action.HOP;
+        } else {
+            return Action.RIGHT;
+        }
+    }
 
-     public Color getColor() {
+    // return gray color
+    public Color getColor() {
         return Color.GRAY;
-     }
+    }
 
-     public String toString() {
+    // define the UI element of the critter
+    public String toString() {
+        String status;
 
-        String status = "fee";
 
+        // move between fee, fie, foe, fum every 6 moves
+        if (this.count <= 6) {
+            status = "fee";
+        } else if (this.count > 6 && this.count <= 12) {
+            status = "fie";
+        } else if (this.count > 12 && this.count <= 18) {
+            status = "foe";
+        } else {
+            status = "fum";
+        }
 
-        
+        this.count++;
+
+        if (this.count >= 24) {
+            this.count = 0;
+        }
+
         return status;
- 
+
     }
 
 }
