@@ -13,13 +13,16 @@ public class Giant extends Critter {
 
     // action movement for Giant
     public Action getMove(CritterInfo info) {
+        Action move;
         if (info.getFront() == Neighbor.OTHER) {
-            return Action.INFECT;
+            move = Action.INFECT;
         } else if (info.getFront() == Neighbor.EMPTY) {
-            return Action.HOP;
+            move = Action.HOP;
         } else {
-            return Action.RIGHT;
+            move = Action.RIGHT;
         }
+
+        return move;
     }
 
     // return gray color
