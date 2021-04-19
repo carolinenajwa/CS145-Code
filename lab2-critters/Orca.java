@@ -18,15 +18,18 @@ public class Orca extends Critter {
 
         if (info.getFront() == Neighbor.OTHER) {
             move = Action.INFECT;
+            this.lastMove = "IF";
         } else if (info.getFront() == Neighbor.EMPTY) {
             move = Action.HOP;
-        } else {
+            this.lastMove = "H";
+        }else {
             if(this.count % 2 == 0){
                 move = Action.RIGHT;
             }else{
                 move = Action.LEFT;
             }
             
+            this.lastMove = "L";
         }
 
         return move;
@@ -34,8 +37,18 @@ public class Orca extends Critter {
 
     // return gray color
     public Color getColor() {
-        return Color.RED;
-    }
+        Color setColor;
+
+        if(this.count % 2 == 0){
+            setColor = Color.RED;
+        }else{
+            setColor =  Color.BLACK;
+        }
+
+        this.count++;
+
+        return setColor;
+    }   
 
     // define the UI element of the critter
     public String toString() {
