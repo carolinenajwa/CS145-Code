@@ -1,9 +1,15 @@
+//Defines the Giant class. This class extends 
+//the Critter class. The token for the 
+//character changes between between 
+//fee, fie, foe, fum every 6 moves
+//The color returned is always GRAY
+
 
 // grab stuff we need
 import java.awt.*;
 
 public class Giant extends Critter {
-    //count helps us keep track of our iterations 
+    // count helps us keep track of our iterations
     private int count;
 
     // Giant
@@ -33,7 +39,6 @@ public class Giant extends Critter {
     // define the UI element of the critter
     public String toString() {
         String status;
-
 
         // move between fee, fie, foe, fum every 6 moves
         if (this.count <= 6) {

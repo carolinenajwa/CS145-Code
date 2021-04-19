@@ -3,8 +3,9 @@
 import java.awt.*;
 
 public class Orca extends Critter {
-    //count helps us keep track of our iterations 
+    // count helps us keep track of our iterations
     private int count;
+    private String lastMove;
 
     // Orca class with counter
     public Orca() {
@@ -16,11 +17,17 @@ public class Orca extends Critter {
         Action move;
 
         if (info.getFront() == Neighbor.OTHER) {
+            
             move = Action.INFECT;
         } else if (info.getFront() == Neighbor.EMPTY) {
             move = Action.HOP;
         } else {
-            move = Action.RIGHT;
+            if(this.count % 2 == 0){
+                move = Action.RIGHT;
+            }else{
+                move = Action.LEFT;
+            }
+            
         }
 
         return move;
