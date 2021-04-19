@@ -17,7 +17,6 @@ public class Orca extends Critter {
         Action move;
 
         if (info.getFront() == Neighbor.OTHER) {
-            
             move = Action.INFECT;
         } else if (info.getFront() == Neighbor.EMPTY) {
             move = Action.HOP;
