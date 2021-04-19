@@ -3,11 +3,10 @@
 import java.awt.*;
 
 public class Giant extends Critter {
-    // Private methods measuring count number of occurrences characters
-    // and color of Bear
+    //count helps us keep track of our iterations 
     private int count;
 
-    // Bear class constructor
+    // Giant
     public Giant() {
         this.count = 0;
     }
