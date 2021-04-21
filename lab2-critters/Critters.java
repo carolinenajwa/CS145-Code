@@ -255,6 +255,7 @@ public class Orca extends Critter {
 
             // add 1 to the most recent color code
             randColorInt = this.lastColorCode + 1;
+            this.lastColorCode = randColorInt;
         }
 
         // format into hex code.
@@ -288,4 +289,3 @@ public class Orca extends Critter {
     }
 
 }
-
