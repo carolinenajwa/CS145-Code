@@ -6,7 +6,6 @@ import java.util.*;
 public class Orca extends Critter {
     // count helps us keep track of our iterations
     private int count;
-    private String lastMove;
     private Random rand;
     private int lastColorCode;
 
@@ -19,24 +18,28 @@ public class Orca extends Critter {
     // action movement for Giant
     public Action getMove(CritterInfo info) {
         Action move;
-        
+        if (info.getFront() == Neighbor.EMPTY) {
+            move =  Action.HOP;
+        } else {
 
-        if (info.getFront() == Neighbor.OTHER) {
-            move = Action.INFECT;
-            this.lastMove = "IF";
-        } else if (info.getFront() == Neighbor.EMPTY) {
-            move = Action.HOP;
-            this.lastMove = "H";
-        }else {
+            if (info.getFront() == Neighbor.OTHER) {
+                move = Action.INFECT;
+            }else{
+                move = Action.RIGHT;
+            }
             
-            move = Action.RIGHT;
-            this.lastMove = "L";
+
+            while(this.rand.nextInt(200) % 2 == 0){
+                move = Action.HOP;
+            }
+
+            
         }
 
         return move;
     }
 
-    // return gray color
+    // return a color
     public Color getColor() {
         Color setColor;
         int randColorInt;
@@ -51,18 +54,27 @@ public class Orca extends Critter {
         
         //format into hex code. 
         String colorCode = String.format("#%06x", randColorInt);
-        setColor = Color.decode(colorCode);
-       
-        //setColor = Color.RED;
-        this.count++;
 
+        //return the color
+        setColor = Color.decode(colorCode);
+
+        //return the color code
         return setColor;
     }   
 
     // define the UI element of the critter
     public String toString() {
+        String name;
 
-        return "WCC";
+        if (this.count % 3 == 0) {
+            name = "WCC";
+        } else {
+            name = "ROCKS";
+        }
+
+        this.count++;
+
+        return name;
 
     }
 
