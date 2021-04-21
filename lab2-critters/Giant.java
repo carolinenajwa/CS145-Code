@@ -4,7 +4,6 @@
 //fee, fie, foe, fum every 6 moves
 //The color returned is always GRAY
 
-
 // grab stuff we need
 import java.awt.*;
 
@@ -19,7 +18,10 @@ public class Giant extends Critter {
 
     // action movement for Giant
     public Action getMove(CritterInfo info) {
+        // create the move action
         Action move;
+
+        // use logic for the next move
         if (info.getFront() == Neighbor.OTHER) {
             move = Action.INFECT;
         } else if (info.getFront() == Neighbor.EMPTY) {
@@ -28,6 +30,7 @@ public class Giant extends Critter {
             move = Action.RIGHT;
         }
 
+        // return that move
         return move;
     }
 
@@ -41,22 +44,25 @@ public class Giant extends Critter {
         String status;
 
         // move between fee, fie, foe, fum every 6 moves
-        if (this.count <= 6) {
+        if (this.count <= 5) {
             status = "fee";
-        } else if (this.count > 6 && this.count <= 12) {
+        } else if (this.count > 5 && this.count <= 11) {
             status = "fie";
-        } else if (this.count > 12 && this.count <= 18) {
+        } else if (this.count > 11 && this.count <= 17) {
             status = "foe";
         } else {
             status = "fum";
         }
 
+        // move the count up
         this.count++;
 
-        if (this.count >= 24) {
+        // reset the count
+        if (this.count >= 23) {
             this.count = 0;
         }
 
+        // return the name
         return status;
 
     }
