@@ -251,6 +251,7 @@ public class Orca extends Critter {
 
             // generate a new color
             randColorInt = this.rand.nextInt(0xffffff + 1);
+            this.lastColorCode = randColorInt;
         } else {
 
             // add 1 to the most recent color code
