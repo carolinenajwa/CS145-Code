@@ -226,9 +226,9 @@ public class Orca extends Critter {
         } else if (info.getFront() == Neighbor.OTHER) {
             move = Action.INFECT;
 
-        //someone next door? move!
+        //someone next door? Turn into the threat. 
         } else if (info.getRight() == Neighbor.OTHER) {
-            move = Action.LEFT;
+            move = Action.RIGHT;
         } else if (info.getLeft() == Neighbor.OTHER) {
             move = Action.LEFT;
         
