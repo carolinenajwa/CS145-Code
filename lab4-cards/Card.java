@@ -1,18 +1,12 @@
-public class Deck {
+// Defines all the possibilities in the deck of cards
 
-    private int deckSize;
-    public static void main(String[] args) {
-        
+public class Cards{
+
+
+    //list the cards
+    enum Card 
+    {
+        ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING;
     }
-
-    public static Card() {
-        
-    }
-
-    public static int enum deckSize() {
-        return deckSize;
-    }
-    
-
 
 }
