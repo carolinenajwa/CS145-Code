@@ -10,17 +10,20 @@
 
 
 public class LetterInventory{
-
+   
+   // Private fields to store string size, letter inventory,
+   // and number of letters in the alphabet
    private int size;
    private int[] inventory;
-   private int[]alphabet = new int[26];
+   private int[] alphabet = new int[26];
    
-   
+   // Constructs an inventory of the alphabetic letters in given string, sets the case of the
+   // letters to lower case and ignores non-alphabetic characters.
    public LetterInventory(String data) {
       inventory = new int[alphabet];
       data = data.toLowerCase();
       
-      for(int index=0; index<letters.length();index++){
+      for(int index = 0; index < alphabet.length();index++){
       if(data.charAt(index) - 'a'){
          alphabet[data - 'a']++;
          size++;
@@ -28,7 +31,8 @@ public class LetterInventory{
       }
    }
 
-
+   // Returns a count of how many of this letter are in the inventory, ignoring case.
+   // Throws an IllegalArgumentException if non-alphabetic character.
    public int get(char letter){
       letter = Character.toLowerCase(letter);
       
@@ -37,6 +41,8 @@ public class LetterInventory{
     } else throw new IllegalArgumentException();
    }
 
+   // Sets the value to each letter in the inventory in order to create a count.
+   // Throws an Illegal ArgumentException if non-alphabetic character.
    public void set(char letter, int value){
       letter = Character.toLowerCase(letter);
       
@@ -46,7 +52,8 @@ public class LetterInventory{
    } else throw new IllegalArgumentException();
    }
 
-
+   // Returns an intenger that represents the sum of the
+   // counts in the inventory.
    public int size(){
       return size;
    }
