@@ -1,5 +1,5 @@
 // Gavin Stuart and Caroline El Jazmi
-// (Date)
+// 5/4/2021
 // CS 145 - Lab 3: Letter Inventory
 
 // This programs output keeps track of an inventory of letters of the alphabet.
