@@ -74,7 +74,7 @@ public class LetterInventory {
    }
 
    public LetterInventory subtract(LetterInventory other) {
-      inventory i = this.inventory.add(other.inventory);
+      inventory i = this.inventory
    }
 
 }
