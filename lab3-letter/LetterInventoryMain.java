@@ -8,72 +8,73 @@
 // The program ignores the case of the letters and anything that is not an alphabetic 
 // character ( e.g., punctuation characters, digits, etc).
 
+public class LetterInventory {
 
-public class LetterInventory{
-   
    // Private fields to store string size, letter inventory,
    // and number of letters in the alphabet
    private int size;
    private int[] inventory;
    private int[] alphabet = new int[26];
-   
-   // Constructs an inventory of the alphabetic letters in given string, sets the case of the
-   // letters to lower case and ignores non-alphabetic characters.
+
+   // Constructs an inventory of the alphabetic letters in given string, sets the
+   // case of the letters to lower case and ignores non-alphabetic characters.
    public LetterInventory(String data) {
       inventory = new int[alphabet];
       data = data.toLowerCase();
-      
-      for(int index = 0; index < alphabet.length();index++){
-      if(data.charAt(index) - 'a'){
-         alphabet[data - 'a']++;
-         size++;
-      }
+
+      for (int index = 0; index < alphabet.length(); index++) {
+         if (data.charAt(index) - 'a') {
+            alphabet[data - 'a']++;
+            size++;
+         }
       }
    }
 
-   // Returns a count of how many of this letter are in the inventory, ignoring case.
-   // Throws an IllegalArgumentException if non-alphabetic character.
-   public int get(char letter){
+   // Returns a count of how many of this letter are in the inventory, ignoring
+   // case. Throws an IllegalArgumentException if non-alphabetic character.
+   public int get(char letter) {
       letter = Character.toLowerCase(letter);
-      
-      if(Character.isLetter(letter)){
-            return alphabet[letter - 'a'];
-    } else throw new IllegalArgumentException();
+
+      if (Character.isLetter(letter)) {
+         return alphabet[letter - 'a'];
+      } else
+         throw new IllegalArgumentException();
    }
 
    // Sets the value to each letter in the inventory in order to create a count.
    // Throws an Illegal ArgumentException if non-alphabetic character.
-   public void set(char letter, int value){
+   public void set(char letter, int value) {
       letter = Character.toLowerCase(letter);
-      
-      if(Character.isLetter(letter)){
+
+      if (Character.isLetter(letter)) {
          size = size - inventory[letter - 'a'] + value;
          inventory[letter - 'a'] = value;
-   } else throw new IllegalArgumentException();
+      } else
+         throw new IllegalArgumentException();
    }
 
    // Returns an intenger that represents the sum of the
    // counts in the inventory.
-   public int size(){
+   public int size() {
       return size;
    }
 
+   public boolean isEmpty() {
+      for (int i : alphabet) {
+         if (i != 0) {
+            return false;
+         }
+      }
 
+      return true;
+   }
 
+   public String toString() {
 
+   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+   public LetterInventory subtract(LetterInventory other) {
+      inventory i = this.inventory.add(other.inventory);
+   }
 
 }
