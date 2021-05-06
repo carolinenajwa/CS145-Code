@@ -59,22 +59,53 @@ public class LetterInventory {
       return size;
    }
 
+   // returns true if all values are empty, else return false
    public boolean isEmpty() {
-      for (int i : alphabet) {
-         if (i != 0) {
-            return false;
-         }
+
+      // sum the array
+      IntStream stream = Arrays.stream(alphabet);
+      int sum = stream.sum();
+
+      // check that sum
+      if (sum > 0) {
+         return false;
+      } else {
+         return true;
+      }
+   }
+
+   // Returns a String representation of the inventory with the letters
+   // all in lowercase and in sorted order and surrounded by square brackets.
+   public String toString() {
+      // open the brackets
+      System.out.print("[");
+
+      // print the chars
+      for (int i : inventory) {
+
       }
 
-      return true;
+      // close the brackets
+      System.out.println("]");
    }
 
-   public String toString() {
-
+   // Constructs and returns a new LetterInventory object that represents
+   // the sum of this letter inventory and the other given LetterInventory.
+   public LetterInventory add(LetterInventory other) {
+      int addSize = this.size + other.size;
+      return addSize;
    }
 
+   // Constructs and returns a new LetterInventory object that represents
+   // the result of subtracting the other inventory from this inventory
    public LetterInventory subtract(LetterInventory other) {
-      inventory i = this.inventory
+      int addSize = this.size - other.size;
+
+      if (addSize < 0) {
+         return null;
+      }
+
+      return addSize;
    }
 
 }
