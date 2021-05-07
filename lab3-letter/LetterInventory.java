@@ -16,12 +16,13 @@ public class LetterInventory {
    // Private fields to store string size, letter inventory,
    // and number of letters in the alphabet
    private int size;
-   private int[] inventory;
+   private String inventory;
    private int[] alphabet = new int[26];
 
     // Constructs an inventory of the alphabetic letters in given string, sets the
    // case of the letters to lower case and ignores non-alphabetic characters.
    public LetterInventory(String data) {
+      
       this.inventory = data.toLowerCase(); 
       
       for (int index = 0; index < inventory.length(); index++) {
