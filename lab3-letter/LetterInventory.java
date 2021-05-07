@@ -1,5 +1,3 @@
-import java.util.stream.IntStream;
-
 // Gavin Stuart and Caroline El Jazmi
 // 5/4/2021
 // CS 145 - Lab 3: Letter Inventory
@@ -9,6 +7,9 @@ import java.util.stream.IntStream;
 // of each individual letters that the string posses (how many a's, how many b's, etc).
 // The program ignores the case of the letters and anything that is not an alphabetic 
 // character ( e.g., punctuation characters, digits, etc).
+
+import java.util.Arrays;
+import java.util.stream.IntStream;
 
 public class LetterInventory {
 
@@ -79,41 +80,33 @@ public class LetterInventory {
    // Returns a String representation of the inventory with the letters
    // all in lowercase and in sorted order and surrounded by square brackets.
    public String toString() {
+
       // open the brackets
-      System.out.print("[");
+      String toString = "[";
+      
+
 
       // print the chars
       for (int i : inventory) {
-
+         toString += i;
       }
 
       // close the brackets
-      System.out.println("]");
+      toString += "]";
+
+      return toString;
    }
 
    // Constructs and returns a new LetterInventory object that represents
    // the sum of this letter inventory and the other given LetterInventory.
    public LetterInventory add(LetterInventory other) {
-      IntStream thisStream = Arrays.stream(alphabet);
-      IntStream otherStream = Arrays.stream(other);
-      int addSize = thisStream.sum() + otherStream.sum();
-
-      return addSize;
+      return other;
    }
 
    // Constructs and returns a new LetterInventory object that represents
    // the result of subtracting the other inventory from this inventory
    public LetterInventory subtract(LetterInventory other) {
-      IntStream thisStream = Arrays.stream(alphabet);
-      IntStream otherStream = Arrays.stream(other);
-      int addSize = thisStream.sum() - otherStream.sum();
-      return addSize;
-
-      if (addSize < 0) {
-         return null;
-      }
-
-      return addSize;
+      return other;
    }
 
 }
