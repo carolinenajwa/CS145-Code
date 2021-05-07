@@ -1,3 +1,5 @@
+import java.util.stream.IntStream;
+
 // Gavin Stuart and Caroline El Jazmi
 // 5/4/2021
 // CS 145 - Lab 3: Letter Inventory
@@ -92,14 +94,20 @@ public class LetterInventory {
    // Constructs and returns a new LetterInventory object that represents
    // the sum of this letter inventory and the other given LetterInventory.
    public LetterInventory add(LetterInventory other) {
-      int addSize = this.size + other.size;
+      IntStream thisStream = Arrays.stream(alphabet);
+      IntStream otherStream = Arrays.stream(other);
+      int addSize = thisStream.sum() + otherStream.sum();
+
       return addSize;
    }
 
    // Constructs and returns a new LetterInventory object that represents
    // the result of subtracting the other inventory from this inventory
    public LetterInventory subtract(LetterInventory other) {
-      int addSize = this.size - other.size;
+      IntStream thisStream = Arrays.stream(alphabet);
+      IntStream otherStream = Arrays.stream(other);
+      int addSize = thisStream.sum() - otherStream.sum();
+      return addSize;
 
       if (addSize < 0) {
          return null;
