@@ -1,5 +1,5 @@
 // Gavin Stuart and Caroline El Jazmi
-// 5/4/2021
+// 5/7/2021
 // CS 145 - Lab 3: Letter Inventory
 
 // This programs output keeps track of an inventory of letters of the alphabet.
@@ -19,18 +19,35 @@ public class LetterInventory {
    private String inventory;
    private int[] alphabet = new int[26];
 
-    // Constructs an inventory of the alphabetic letters in given string, sets the
+   // Constructs an inventory of the alphabetic letters in given string, sets the
    // case of the letters to lower case and ignores non-alphabetic characters.
    public LetterInventory(String data) {
-      
-      this.inventory = data.toLowerCase(); 
-      
+
+      //set inventory equal to data
+      this.inventory = data.toLowerCase();
+
+      //for each character in this.inventory
       for (int index = 0; index < inventory.length(); index++) {
-         if (Character.isLetter(data.charAt(index)- 'a')) {
-            alphabet[index - 'a']++;
-            size++;
+
+         //if this is a character
+         if (Character.isLetter(inventory.charAt(index))) {
+
+            //what character are we dealing with?
+            char c = inventory.charAt(index);
+
+            //what is the index in alphabet of our character? 
+            //we can discover the ascii code by using explicit
+            // typecasting to get the char as an ascii int value
+            // and subtracting 96
+            int alphaIndex = (int)c - 96;
+            
+            alphabet[alphaIndex]++;
+            
+            this.size++;
          }
       }
+
+      
    }
 
    // Returns a count of how many of this letter are in the inventory, ignoring
@@ -50,17 +67,16 @@ public class LetterInventory {
       letter = Character.toLowerCase(letter);
 
       if (Character.isLetter(letter)) {
-        size = size - alphabet[letter - 'a'] + value;
+         size -= alphabet[letter - 'a'] + value;
          alphabet[letter - 'a'] = value;
       } else
          throw new IllegalArgumentException();
    }
 
-
    // Returns an intenger that represents the sum of the
    // counts in the inventory.
    public int size() {
-      return size;
+      return this.size;
    }
 
    // returns true if all values are empty, else return false
@@ -85,12 +101,13 @@ public class LetterInventory {
       // open the brackets
       String toString = "[";
 
-
       // print the chars
-      for (int i : this.alphabet) {
-         for (int j = 0; j < i; j++) {
-            toString += j;
-         }
+      for (int i = 0; i < 25; i++) {
+         if (alphabet[i] > 0) {
+            for (int j = 0; j < alphabet[i]; j++) {
+               toString += Character.toString(i + 96);
+            }
+         }  
       }
 
       // close the brackets
@@ -102,8 +119,17 @@ public class LetterInventory {
    // Constructs and returns a new LetterInventory object that represents
    // the sum of this letter inventory and the other given LetterInventory.
    public LetterInventory add(LetterInventory other) {
+      // create new letter inventory object
+      LetterInventory add = new LetterInventory(inventory);
+
+      // new object with sum of current inventory and new inventory(other)
       
-     
+         for(int index = 0; index < inventory.length(); index++){
+
+            add.alphabet[index] = alphabet[index] + other.alphabet[index];
+
+         }
+      // return add
       return other;
    }
 

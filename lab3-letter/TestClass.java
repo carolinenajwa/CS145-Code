@@ -4,7 +4,7 @@ public class TestClass {
     public static void main(String[] args) {
         LetterInventory test = new LetterInventory("test");
         LetterInventory test2 = new LetterInventory("test");
-
-        System.out.println(test.toString());
+        test.add(test2)
+        System.out.println();
     }
 }
