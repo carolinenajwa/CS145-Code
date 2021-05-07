@@ -83,12 +83,13 @@ public class LetterInventory {
 
       // open the brackets
       String toString = "[";
-      
 
 
       // print the chars
-      for (int i : inventory) {
-         toString += i;
+      for (int i : this.alphabet) {
+         for (int j = 0; j < i; j++) {
+            toString += j;
+         }
       }
 
       // close the brackets
@@ -100,6 +101,8 @@ public class LetterInventory {
    // Constructs and returns a new LetterInventory object that represents
    // the sum of this letter inventory and the other given LetterInventory.
    public LetterInventory add(LetterInventory other) {
+      
+     
       return other;
    }
 
