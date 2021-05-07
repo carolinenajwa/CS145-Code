@@ -19,15 +19,14 @@ public class LetterInventory {
    private int[] inventory;
    private int[] alphabet = new int[26];
 
-   // Constructs an inventory of the alphabetic letters in given string, sets the
+    // Constructs an inventory of the alphabetic letters in given string, sets the
    // case of the letters to lower case and ignores non-alphabetic characters.
    public LetterInventory(String data) {
-      inventory = new int[alphabet];
-      data = data.toLowerCase();
-
-      for (int index = 0; index < alphabet.length(); index++) {
-         if (data.charAt(index) - 'a') {
-            alphabet[data - 'a']++;
+      this.inventory = data.toLowerCase(); 
+      
+      for (int index = 0; index < inventory.length(); index++) {
+         if (Character.isLetter(data.charAt(index)- 'a')) {
+            alphabet[index - 'a']++;
             size++;
          }
       }
@@ -50,11 +49,12 @@ public class LetterInventory {
       letter = Character.toLowerCase(letter);
 
       if (Character.isLetter(letter)) {
-         size = size - inventory[letter - 'a'] + value;
-         inventory[letter - 'a'] = value;
+        size = size - alphabet[letter - 'a'] + value;
+         alphabet[letter - 'a'] = value;
       } else
          throw new IllegalArgumentException();
    }
+
 
    // Returns an intenger that represents the sum of the
    // counts in the inventory.
