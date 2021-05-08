@@ -124,9 +124,8 @@ public class LetterInventory {
 
       // new object with sum of current inventory and new inventory(other)
       
-         for(int index = 0; index < inventory.length(); index++){
-
-            add.alphabet[index] = alphabet[index] + other.alphabet[index];
+         for(int index = 0; index < 25; index++){
+            add.alphabet[index] += other.alphabet[index];
 
          }
       // return add
